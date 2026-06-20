@@ -187,7 +187,7 @@ func _process(_delta: float) -> void:
 			Input.get_joy_axis(0, JOY_AXIS_RIGHT_X),
 			Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
 		);
-	var joy_deadzone = 0.3
+	var joy_deadzone = 0.3;
 	
 	if joy_direction.length() > joy_deadzone:
 		using_joypad = true;
@@ -298,7 +298,7 @@ func close() -> String:
 	
 	var selected_name : String = "<null>";
 	if selected_options_index < len(options) and options[selected_options_index]:
-		selected_name = options[selected_options_index].option_name
+		selected_name = options[selected_options_index].option_name;
 	on_wheel_closed.emit(selected_name);
 	return selected_name;
 

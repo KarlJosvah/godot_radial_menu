@@ -6,8 +6,13 @@ extends CanvasLayer;
 @onready var wheel_both_right: Control = $wheel_both_right;
 @onready var label: Label = $Label;
 
-enum Mode { NONE, LEFT, RIGHT, BOTH }
-var current_mode = Mode.NONE
+enum Mode {
+	NONE,
+	LEFT,
+	RIGHT,
+	BOTH
+}
+var current_mode = Mode.NONE;
 
 func _process(_delta: float) -> void:
 	var l_pressed = Input.is_action_pressed("wheel_L");
