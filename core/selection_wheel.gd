@@ -74,6 +74,16 @@ signal on_selection_change(selected_name: String);
 @export_group("")
 const animation_group: Array[String] = ["ease_in_speed", "ease_out_speed"];
 
+enum Joy_Axis {
+	ANY,
+	LEFT,
+	RIGHT
+}
+
+@export var joy_axe : Joy_Axis = Joy_Axis.ANY;
+
+# ====================================================================================================
+
 @export var animation: bool = false:
 	set(value):
 		animation = value;
@@ -153,10 +163,30 @@ func _process(_delta: float) -> void:
 	if not visible:
 		return ;
 	
-	var joy_direction = Vector2(
-		Input.get_joy_axis(0, JOY_AXIS_LEFT_X),
-		Input.get_joy_axis(0, JOY_AXIS_LEFT_Y)
-	)
+	var joy_direction : Vector2;
+	if joy_axe == Joy_Axis.ANY:
+		var left_dir = Vector2(
+			Input.get_joy_axis(0, JOY_AXIS_LEFT_X),
+			Input.get_joy_axis(0, JOY_AXIS_LEFT_Y)
+		);
+		var right_dir = Vector2(
+			Input.get_joy_axis(0, JOY_AXIS_RIGHT_X),
+			Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
+		);
+		if left_dir.length() > right_dir.length():
+			joy_direction = left_dir;
+		else:
+			joy_direction = right_dir;
+	elif joy_axe == Joy_Axis.LEFT:
+		joy_direction = Vector2(
+			Input.get_joy_axis(0, JOY_AXIS_LEFT_X),
+			Input.get_joy_axis(0, JOY_AXIS_LEFT_Y)
+		);
+	elif joy_axe == Joy_Axis.RIGHT:
+		joy_direction = Vector2(
+			Input.get_joy_axis(0, JOY_AXIS_RIGHT_X),
+			Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
+		);
 	var joy_deadzone = 0.3
 	
 	if joy_direction.length() > joy_deadzone:
