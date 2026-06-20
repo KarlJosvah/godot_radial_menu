@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bflblvx6m7qey" path="res://01/ui_01.gd" id="1_h7tqt"]
 [ext_resource type="PackedScene" uid="uid://irjcgita3fgr" path="res://core/selection_wheel.tscn" id="2_k2xl5"]
 
-[node name="Main" type="Node" unique_id=745558656]
+[node name="Main 01" type="Node" unique_id=745558656]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=822229606]
 script = ExtResource("1_h7tqt")
