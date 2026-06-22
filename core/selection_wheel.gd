@@ -2,8 +2,8 @@
 extends Control;
 
 signal on_wheel_opened();
-signal on_wheel_closed(selected_name: String);
-signal on_selection_change(selected_name: String);
+signal on_wheel_closed(selected_index: int);
+signal on_selection_change(selected_index: int);
 
 # ====================================================================================================
 
@@ -72,7 +72,6 @@ signal on_selection_change(selected_name: String);
 # ====================================================================================================
 
 @export_group("")
-const animation_group: Array[String] = ["ease_in_speed", "ease_out_speed"];
 
 enum Joy_Axis {
 	ANY,
@@ -84,6 +83,7 @@ enum Joy_Axis {
 
 # ====================================================================================================
 
+const animation_group: Array[String] = ["ease_in_speed", "ease_out_speed"];
 @export var animation: bool = false:
 	set(value):
 		animation = value;
@@ -119,10 +119,10 @@ var selected_options_index : int = 0:
 		if selected_options_index != target_value:
 			selected_options_index = target_value;
 			queue_redraw();
-			var selected_name : String = "<null>";
-			if target_value < len(options) and options[target_value]:
-				selected_name = options[target_value].option_name;
-			on_selection_change.emit(selected_name);
+			var selected_index : int = -1;
+			if target_value < len(options):
+				selected_index = target_value;
+			on_selection_change.emit(selected_index);
 
 # ====================================================================================================
 
@@ -291,16 +291,16 @@ func open() -> void:
 	last_non_zero_selected_index = 0;
 	on_wheel_opened.emit();
 
-func close() -> String:
+func close() -> int:
 	is_opened = false;
 	toggle_visibility();
 	Input.mouse_mode = previous_mouse_mode;
 	
-	var selected_name : String = "<null>";
+	var selected_index : int = -1;
 	if selected_options_index < len(options) and options[selected_options_index]:
-		selected_name = options[selected_options_index].option_name;
-	on_wheel_closed.emit(selected_name);
-	return selected_name;
+		selected_index = selected_options_index;
+	on_wheel_closed.emit(selected_index);
+	return selected_index;
 
 func toggle_visibility() -> void:
 	if transition_tween and transition_tween.is_running():

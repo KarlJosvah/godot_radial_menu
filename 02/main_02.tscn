@@ -82,15 +82,48 @@ ease_out_speed = 0.0
 [node name="wheel_both_left" parent="UI" unique_id=1994358744 instance=ExtResource("1_5lnwv")]
 offset_left = -470.0
 offset_right = -470.0
-options = Array[ExtResource("2_v5ukq")]([null, null, null, null, null, null, null, null])
+options = Array[ExtResource("2_v5ukq")]([null, null, null, null, null, null, null])
 bg_color = Color(0.74260557, 0.21706736, 0.2711867, 0.6901961)
 joy_axe = 1
 ease_out_speed = 0.0
 
-[node name="wheel_both_right" parent="UI" unique_id=1671960258 instance=ExtResource("1_5lnwv")]
-offset_left = 450.0
-offset_right = 450.0
-options = Array[ExtResource("2_v5ukq")]([null, null, null, null, null])
+[node name="wheel_both_rights" type="Control" parent="UI" unique_id=923421739]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1410.0
+offset_top = 540.0
+offset_right = 1450.0
+offset_bottom = 580.0
+
+[node name="wheel_both_right_1" parent="UI/wheel_both_rights" unique_id=1671960258 instance=ExtResource("1_5lnwv")]
+layout_mode = 1
+offset_left = -20.0
+offset_top = -20.0
+offset_right = -20.0
+offset_bottom = -20.0
+options = Array[ExtResource("2_v5ukq")]([null, null, null, null, null, null, null, null, null])
 bg_color = Color(0.5124475, 0.42425498, 0.192213, 0.6901961)
 joy_axe = 2
 ease_out_speed = 0.0
+
+[node name="wheel_both_right_2" parent="UI/wheel_both_rights" unique_id=1284643210 instance=ExtResource("1_5lnwv")]
+layout_mode = 1
+offset_left = -20.0
+offset_top = -20.0
+offset_right = -20.0
+offset_bottom = -20.0
+options = Array[ExtResource("2_v5ukq")]([null, null, null, null, null])
+bg_color = Color(0.57673895, 0.2237317, 0.8039987, 0.6901961)
+joy_axe = 2
+ease_out_speed = 0.0
+
+[node name="wheel_both_right_3" parent="UI/wheel_both_rights" unique_id=1212632317 instance=ExtResource("1_5lnwv")]
+layout_mode = 1
+offset_left = -20.0
+offset_top = -20.0
+offset_right = -20.0
+offset_bottom = -20.0
+joy_axe = 2
+ease_out_speed = 0.0
+
+[connection signal="on_selection_change" from="UI/wheel_both_left" to="UI" method="_on_wheel_both_left_on_selection_change"]
