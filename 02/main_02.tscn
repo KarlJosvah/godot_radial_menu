@@ -2,6 +2,40 @@
 
 [ext_resource type="PackedScene" uid="uid://irjcgita3fgr" path="res://core/selection_wheel.tscn" id="1_5lnwv"]
 [ext_resource type="Script" uid="uid://do221jxkvjp0e" path="res://02/ui_02.gd" id="1_uw5ir"]
+[ext_resource type="Script" uid="uid://dj0m11c6pqxne" path="res://core/wheel_option.gd" id="3_8ldu0"]
+[ext_resource type="Texture2D" uid="uid://ly3jpgxc87xy" path="res://assets/spells/Icons/Icons_Fire Arrow.png" id="4_dugvt"]
+[ext_resource type="Texture2D" uid="uid://j4fccc1s5juu" path="res://assets/spells/Icons/Icons_Fire Ball.png" id="5_v5ukq"]
+[ext_resource type="Texture2D" uid="uid://cfu7cpnh1ctvf" path="res://assets/spells/Icons/Icons_Fire Spell.png" id="6_uw5ir"]
+[ext_resource type="Texture2D" uid="uid://b4j3m77jejsba" path="res://assets/spells/Icons/Icons_Water Arrow.png" id="7_v40nv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqund"]
+script = ExtResource("3_8ldu0")
+option_name = "Cancel"
+metadata/_custom_type_script = "uid://dj0m11c6pqxne"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fqwr"]
+atlas = ExtResource("4_dugvt")
+script = ExtResource("3_8ldu0")
+option_name = "Fire Arrow"
+metadata/_custom_type_script = "uid://dj0m11c6pqxne"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d15o"]
+atlas = ExtResource("5_v5ukq")
+script = ExtResource("3_8ldu0")
+option_name = "Fire Ball"
+metadata/_custom_type_script = "uid://dj0m11c6pqxne"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86wa6"]
+atlas = ExtResource("6_uw5ir")
+script = ExtResource("3_8ldu0")
+option_name = "Fire Spell"
+metadata/_custom_type_script = "uid://dj0m11c6pqxne"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh7x8"]
+atlas = ExtResource("7_v40nv")
+script = ExtResource("3_8ldu0")
+option_name = "Water Arrow"
+metadata/_custom_type_script = "uid://dj0m11c6pqxne"
 
 [node name="Main 02" type="Node" unique_id=1511164442]
 
@@ -15,18 +49,19 @@ offset_right = 132.0
 offset_bottom = 42.0
 text = "Text goes here"
 
-[node name="wheel_left" parent="UI" unique_id=885623723 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
-linked_wheels = [null, null, null, null, null, null, null]
+[node name="wheel_left" parent="UI" unique_id=885623723 instance=ExtResource("1_5lnwv")]
 
 [node name="wheel_right" parent="UI" unique_id=954082516 instance=ExtResource("1_5lnwv")]
 bg_color = Color(0.6667971, 0.30439863, 0.32570416, 0.6901961)
-linked_wheel = true
 
 [node name="wheel_both_left" parent="UI" unique_id=1994358744 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
 offset_left = -470.0
 offset_right = -470.0
+options = Array[ExtResource("3_8ldu0")]([SubResource("AtlasTexture_sqund"), SubResource("AtlasTexture_6fqwr"), SubResource("AtlasTexture_3d15o"), SubResource("AtlasTexture_86wa6"), SubResource("AtlasTexture_gh7x8")])
+linked_wheel = true
+linked_wheels = [null, NodePath("../wheel_both_rights/wheel_both_right_1"), NodePath("../wheel_both_rights/wheel_both_right_2"), NodePath("../wheel_both_rights/wheel_both_right_3"), null]
 bg_color = Color(0.63671225, 0.5436272, 0.29716727, 0.6901961)
-linked_wheels = [null, null, null, null, null, null, null]
+joy_axe = 1
 
 [node name="wheel_both_rights" type="Control" parent="UI" unique_id=923421739]
 layout_mode = 3
@@ -36,31 +71,29 @@ offset_top = 540.0
 offset_right = 1450.0
 offset_bottom = 580.0
 
-[node name="wheel_both_right_1" parent="UI/wheel_both_rights" unique_id=1671960258 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
+[node name="wheel_both_right_1" parent="UI/wheel_both_rights" unique_id=1671960258 instance=ExtResource("1_5lnwv")]
 layout_mode = 1
 offset_left = -20.0
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = -20.0
 bg_color = Color(0.38304883, 0.4714442, 0.24391907, 0.6901961)
-linked_wheels = [null, null, null, null, null, null, null]
+joy_axe = 2
 
-[node name="wheel_both_right_2" parent="UI/wheel_both_rights" unique_id=1284643210 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
+[node name="wheel_both_right_2" parent="UI/wheel_both_rights" unique_id=1284643210 instance=ExtResource("1_5lnwv")]
 layout_mode = 1
 offset_left = -20.0
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = -20.0
 bg_color = Color(0.6122784, 0.31636864, 0.5107196, 0.6901961)
-linked_wheels = [null, null, null, null, null, null, null]
+joy_axe = 2
 
-[node name="wheel_both_right_3" parent="UI/wheel_both_rights" unique_id=1212632317 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
+[node name="wheel_both_right_3" parent="UI/wheel_both_rights" unique_id=1212632317 instance=ExtResource("1_5lnwv")]
 layout_mode = 1
 offset_left = -20.0
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = -20.0
 bg_color = Color(0.91053516, 0.9014402, 0.89963275, 0.6901961)
-linked_wheels = [null, null, null, null, null, null, null]
-
-[connection signal="on_selection_change" from="UI/wheel_both_left" to="UI" method="_on_wheel_both_left_on_selection_change"]
+joy_axe = 2

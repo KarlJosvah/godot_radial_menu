@@ -3,13 +3,6 @@ extends CanvasLayer;
 @onready var wheel_left: Control = $wheel_left;
 @onready var wheel_right: Control = $wheel_right;
 @onready var wheel_both_left: Control = $wheel_both_left;
-#@onready var wheel_both_right: Control = $wheel_both_right;
-@onready var wheel_both_rights : Array[Control] = [
-	null,
-	$wheel_both_rights/wheel_both_right_1,
-	$wheel_both_rights/wheel_both_right_2,
-	$wheel_both_rights/wheel_both_right_3
-];
 @onready var label: Label = $Label;
 
 enum Mode {
@@ -19,7 +12,6 @@ enum Mode {
 	BOTH
 }
 var current_mode = Mode.NONE;
-var wheel_both_rights_index : int = 0;
 
 func _process(_delta: float) -> void:
 	var l_pressed = Input.is_action_pressed("wheel_L");
@@ -43,17 +35,18 @@ func _change_mode(new_mode: Mode) -> void:
 	match current_mode:
 		Mode.LEFT:
 			var sel = wheel_left.close();
-			var text = _get_wheel_value(wheel_left, sel);
-			label.text = text;
+			label.text = _get_wheel_value(wheel_left, sel);
 		Mode.RIGHT:
-			var sel : int = wheel_right.close();
+			var sel = wheel_right.close();
 			label.text = _get_wheel_value(wheel_right, sel);
 		Mode.BOTH:
-			var sel_l : int = wheel_both_left.close();
-			var sel_r : int = _wheel_both_rights(false);
+			var sel_l = wheel_both_left.close();
 			var text = _get_wheel_value(wheel_both_left, sel_l);
-			if wheel_both_rights_index < len(wheel_both_rights):
-				text += " & " +  _get_wheel_value(wheel_both_rights[wheel_both_rights_index], sel_r);
+			if sel_l != -1 and sel_l < len(wheel_both_left.linked_wheels):
+				var linked = wheel_both_left.linked_wheels[sel_l];
+				if linked:
+					var sel_r = linked.selected_options_index;
+					text += " & " + _get_wheel_value(linked, sel_r);
 			label.text = text;
 			
 	current_mode = new_mode;
@@ -66,33 +59,14 @@ func _change_mode(new_mode: Mode) -> void:
 			wheel_right.open();
 		Mode.BOTH:
 			wheel_both_left.open();
-			_wheel_both_rights(true);
 
-func _get_wheel_value(wheel : Control, index : int) -> String:
-	if not wheel:
+func _get_wheel_value(wheel_node : Control, index : int) -> String:
+	if not wheel_node:
 		return "<>";
-	if not wheel.options:
+	if not wheel_node.options:
 		return "<>";
-	if not index < len(wheel.options):
+	if not index < len(wheel_node.options):
 		return "<>";
-	if not wheel.options[index]:
+	if not wheel_node.options[index]:
 		return "<>";
-	return wheel.options[index].option_name;
-
-func _wheel_both_rights(open : bool) -> int:
-	if not wheel_both_rights_index < len(wheel_both_rights):
-		return -1;
-	var wheel = wheel_both_rights[wheel_both_rights_index];
-	if not wheel:
-		return -1;
-	if open:
-		wheel.open();
-		return -1;
-	else:
-		return wheel.close();
-
-
-func _on_wheel_both_left_on_selection_change(selected_index: int) -> void:
-	_wheel_both_rights(false); # close
-	wheel_both_rights_index = selected_index;
-	_wheel_both_rights(true); # open
+	return wheel_node.options[index].option_name;

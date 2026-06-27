@@ -20,6 +20,25 @@ signal on_selection_change(selected_index: int);
 		if is_node_ready():
 			queue_redraw();
 
+# ====================================================================================================
+
+const linked_wheels_group : Array[String] = ["linked_wheels"];
+@export_subgroup("")
+@export var linked_wheel : bool = false:
+	set(value):
+		linked_wheel = value;
+		notify_property_list_changed();
+		if is_node_ready():
+			queue_redraw();
+
+@export var linked_wheels : Array[SelectionWheel]:
+	set(value):
+		if options:
+			value.resize(options.size());
+		linked_wheels = value;
+
+# ====================================================================================================
+
 @export_subgroup("config")
 @export_range(10.0, 100.0) var sprite_thickness_percent: float = 80.0:
 	set(value):
@@ -106,22 +125,6 @@ const animation_group: Array[String] = ["ease_in_speed", "ease_out_speed"];
 
 # ====================================================================================================
 
-const linked_wheels_group : Array[String] = ["linked_wheels"];
-@export var linked_wheel : bool = false:
-	set(value):
-		linked_wheel = value;
-		notify_property_list_changed();
-		if is_node_ready():
-			queue_redraw();
-
-@export var linked_wheels : Array[SelectionWheel]:
-	set(value):
-		if options:
-			value.resize(options.size());
-		linked_wheels = value;
-
-# ====================================================================================================
-
 var outer_radius: float = 0.0;
 var inner_radius: float = 0.0;
 var sprite_size: Vector2 = Vector2.ZERO;
@@ -159,6 +162,7 @@ func _ready() -> void:
 	$Render.init(self);
 	$Interact.init(self);
 	$Config.init(self);
+	$Linked.init(self);
 	get_viewport().size_changed.connect(_on_viewport_size_changed);
 	_update_radius();
 	_init();
