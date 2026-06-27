@@ -1,61 +1,10 @@
 [gd_scene format=3 uid="uid://irjcgita3fgr"]
 
 [ext_resource type="Script" uid="uid://bjrahi5hq8ddr" path="res://core/selection_wheel.gd" id="1_ofd7g"]
-[ext_resource type="Script" uid="uid://dj0m11c6pqxne" path="res://core/wheel_option.gd" id="2_4lxda"]
-[ext_resource type="Texture2D" uid="uid://ly3jpgxc87xy" path="res://assets/spells/Icons/Icons_Fire Arrow.png" id="3_0isde"]
-[ext_resource type="Texture2D" uid="uid://j4fccc1s5juu" path="res://assets/spells/Icons/Icons_Fire Ball.png" id="4_pt43d"]
-[ext_resource type="Texture2D" uid="uid://cfu7cpnh1ctvf" path="res://assets/spells/Icons/Icons_Fire Spell.png" id="5_vcnht"]
-[ext_resource type="Texture2D" uid="uid://b4j3m77jejsba" path="res://assets/spells/Icons/Icons_Water Arrow.png" id="6_1yo78"]
-[ext_resource type="Texture2D" uid="uid://d1f4mmpjg27f6" path="res://assets/spells/Icons/Icons_Water Ball.png" id="7_5cebd"]
-[ext_resource type="Texture2D" uid="uid://c8r2xy8a6jorf" path="res://assets/spells/Icons/Icons_Water Spell.png" id="8_dcoln"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8lqm8"]
-region = Rect2(0, 0, 16, 16)
-script = ExtResource("2_4lxda")
-option_name = "Cancel"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eoedv"]
-atlas = ExtResource("3_0isde")
-region = Rect2(0, 0, 640, 640)
-script = ExtResource("2_4lxda")
-option_name = "Fire Arrow"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y2x1g"]
-atlas = ExtResource("4_pt43d")
-region = Rect2(0, 0, 640, 640)
-script = ExtResource("2_4lxda")
-option_name = "Fire Ball"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ik0l8"]
-atlas = ExtResource("5_vcnht")
-region = Rect2(0, 0, 640, 640)
-script = ExtResource("2_4lxda")
-option_name = "Fire Spell"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jf2yj"]
-atlas = ExtResource("6_1yo78")
-region = Rect2(0, 0, 640, 640)
-script = ExtResource("2_4lxda")
-option_name = "Water Arrow"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vgejl"]
-atlas = ExtResource("7_5cebd")
-region = Rect2(0, 0, 640, 640)
-script = ExtResource("2_4lxda")
-option_name = "Water Ball"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_djo0r"]
-atlas = ExtResource("8_dcoln")
-region = Rect2(0, 0, 640, 640)
-script = ExtResource("2_4lxda")
-option_name = "Water Spell"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
+[ext_resource type="Script" uid="uid://db0qb0invaw6u" path="res://core/interact.gd" id="4_7ynom"]
+[ext_resource type="Script" uid="uid://d1um26rdw5svp" path="res://core/config.gd" id="5_t3sya"]
+[ext_resource type="Script" uid="uid://7rxcupumgyhi" path="res://core/input.gd" id="9_3d15o"]
+[ext_resource type="Script" uid="uid://igxxw8ofitog" path="res://core/render.gd" id="10_86wa6"]
 
 [node name="SelectionWheel" type="Control" unique_id=885623723]
 layout_mode = 3
@@ -67,7 +16,15 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ofd7g")
-options = Array[ExtResource("2_4lxda")]([SubResource("AtlasTexture_8lqm8"), SubResource("AtlasTexture_eoedv"), SubResource("AtlasTexture_y2x1g"), SubResource("AtlasTexture_ik0l8"), SubResource("AtlasTexture_jf2yj"), SubResource("AtlasTexture_vgejl"), SubResource("AtlasTexture_djo0r"), null, null, null])
-animation = true
-ease_in_speed = 0.1
-ease_out_speed = 0.1
+
+[node name="Input" type="Node" parent="." unique_id=45787566]
+script = ExtResource("9_3d15o")
+
+[node name="Render" type="Node" parent="." unique_id=1527588817]
+script = ExtResource("10_86wa6")
+
+[node name="Interact" type="Node" parent="." unique_id=230541898]
+script = ExtResource("4_7ynom")
+
+[node name="Config" type="Node" parent="." unique_id=507006293]
+script = ExtResource("5_t3sya")

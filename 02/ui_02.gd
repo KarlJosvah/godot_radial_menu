@@ -93,6 +93,6 @@ func _wheel_both_rights(open : bool) -> int:
 
 
 func _on_wheel_both_left_on_selection_change(selected_index: int) -> void:
-	var sel_r : int = _wheel_both_rights(false); # close
+	_wheel_both_rights(false); # close
 	wheel_both_rights_index = selected_index;
 	_wheel_both_rights(true); # open
