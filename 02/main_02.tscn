@@ -2,61 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://irjcgita3fgr" path="res://core/selection_wheel.tscn" id="1_5lnwv"]
 [ext_resource type="Script" uid="uid://do221jxkvjp0e" path="res://02/ui_02.gd" id="1_uw5ir"]
-[ext_resource type="Script" uid="uid://dj0m11c6pqxne" path="res://core/wheel_option.gd" id="2_v5ukq"]
-[ext_resource type="Texture2D" uid="uid://ly3jpgxc87xy" path="res://assets/spells/Icons/Icons_Fire Arrow.png" id="3_uw5ir"]
-[ext_resource type="Texture2D" uid="uid://j4fccc1s5juu" path="res://assets/spells/Icons/Icons_Fire Ball.png" id="4_v40nv"]
-[ext_resource type="Texture2D" uid="uid://cfu7cpnh1ctvf" path="res://assets/spells/Icons/Icons_Fire Spell.png" id="5_a537y"]
-[ext_resource type="Texture2D" uid="uid://b4j3m77jejsba" path="res://assets/spells/Icons/Icons_Water Arrow.png" id="6_vwytc"]
-[ext_resource type="Texture2D" uid="uid://d1f4mmpjg27f6" path="res://assets/spells/Icons/Icons_Water Ball.png" id="7_3cnm4"]
-[ext_resource type="Texture2D" uid="uid://c8r2xy8a6jorf" path="res://assets/spells/Icons/Icons_Water Spell.png" id="8_apjfk"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8lqm8"]
-region = Rect2(0, 0, 16, 16)
-script = ExtResource("2_v5ukq")
-option_name = "Cancel"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eoedv"]
-atlas = ExtResource("3_uw5ir")
-region = Rect2(0, 0, 640, 640)
-script = ExtResource("2_v5ukq")
-option_name = "Fire Arrow"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y2x1g"]
-atlas = ExtResource("4_v40nv")
-region = Rect2(0, 0, 640, 640)
-script = ExtResource("2_v5ukq")
-option_name = "Fire Ball"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ik0l8"]
-atlas = ExtResource("5_a537y")
-region = Rect2(0, 0, 640, 640)
-script = ExtResource("2_v5ukq")
-option_name = "Fire Spell"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jf2yj"]
-atlas = ExtResource("6_vwytc")
-region = Rect2(0, 0, 640, 640)
-script = ExtResource("2_v5ukq")
-option_name = "Water Arrow"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vgejl"]
-atlas = ExtResource("7_3cnm4")
-region = Rect2(0, 0, 640, 640)
-script = ExtResource("2_v5ukq")
-option_name = "Water Ball"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_djo0r"]
-atlas = ExtResource("8_apjfk")
-region = Rect2(0, 0, 640, 640)
-script = ExtResource("2_v5ukq")
-option_name = "Water Spell"
-metadata/_custom_type_script = "uid://dj0m11c6pqxne"
 
 [node name="Main 02" type="Node" unique_id=1511164442]
 
@@ -71,21 +16,14 @@ offset_bottom = 42.0
 text = "Text goes here"
 
 [node name="wheel_left" parent="UI" unique_id=885623723 instance=ExtResource("1_5lnwv")]
-options = Array[ExtResource("2_v5ukq")]([SubResource("AtlasTexture_8lqm8"), SubResource("AtlasTexture_eoedv"), SubResource("AtlasTexture_y2x1g"), SubResource("AtlasTexture_ik0l8"), SubResource("AtlasTexture_jf2yj"), SubResource("AtlasTexture_vgejl"), SubResource("AtlasTexture_djo0r")])
-ease_out_speed = 0.0
 
 [node name="wheel_right" parent="UI" unique_id=954082516 instance=ExtResource("1_5lnwv")]
-options = Array[ExtResource("2_v5ukq")]([null, null, null, null, null, null, null, null, null, null, null, null, null])
-bg_color = Color(0.28710783, 0.48821688, 0.3414971, 0.6901961)
-ease_out_speed = 0.0
+bg_color = Color(0.6667971, 0.30439863, 0.32570416, 0.6901961)
 
 [node name="wheel_both_left" parent="UI" unique_id=1994358744 instance=ExtResource("1_5lnwv")]
 offset_left = -470.0
 offset_right = -470.0
-options = Array[ExtResource("2_v5ukq")]([null, null, null, null, null, null, null])
-bg_color = Color(0.74260557, 0.21706736, 0.2711867, 0.6901961)
-joy_axe = 1
-ease_out_speed = 0.0
+bg_color = Color(0.63671225, 0.5436272, 0.29716727, 0.6901961)
 
 [node name="wheel_both_rights" type="Control" parent="UI" unique_id=923421739]
 layout_mode = 3
@@ -101,10 +39,7 @@ offset_left = -20.0
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = -20.0
-options = Array[ExtResource("2_v5ukq")]([null, null, null, null, null, null, null, null, null])
-bg_color = Color(0.5124475, 0.42425498, 0.192213, 0.6901961)
-joy_axe = 2
-ease_out_speed = 0.0
+bg_color = Color(0.38304883, 0.4714442, 0.24391907, 0.6901961)
 
 [node name="wheel_both_right_2" parent="UI/wheel_both_rights" unique_id=1284643210 instance=ExtResource("1_5lnwv")]
 layout_mode = 1
@@ -112,10 +47,7 @@ offset_left = -20.0
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = -20.0
-options = Array[ExtResource("2_v5ukq")]([null, null, null, null, null])
-bg_color = Color(0.57673895, 0.2237317, 0.8039987, 0.6901961)
-joy_axe = 2
-ease_out_speed = 0.0
+bg_color = Color(0.6122784, 0.31636864, 0.5107196, 0.6901961)
 
 [node name="wheel_both_right_3" parent="UI/wheel_both_rights" unique_id=1212632317 instance=ExtResource("1_5lnwv")]
 layout_mode = 1
@@ -123,7 +55,6 @@ offset_left = -20.0
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = -20.0
-joy_axe = 2
-ease_out_speed = 0.0
+bg_color = Color(0.91053516, 0.9014402, 0.89963275, 0.6901961)
 
 [connection signal="on_selection_change" from="UI/wheel_both_left" to="UI" method="_on_wheel_both_left_on_selection_change"]
