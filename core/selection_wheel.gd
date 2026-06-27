@@ -1,5 +1,6 @@
 @tool
 extends Control
+class_name SelectionWheel;
 
 @warning_ignore("unused_signal")
 signal on_wheel_opened();
@@ -14,6 +15,8 @@ signal on_selection_change(selected_index: int);
 @export var options: Array[WheelOption]:
 	set(value):
 		options = value;
+		linked_wheels.resize(options.size());
+		notify_property_list_changed();
 		if is_node_ready():
 			queue_redraw();
 
@@ -103,6 +106,22 @@ const animation_group: Array[String] = ["ease_in_speed", "ease_out_speed"];
 
 # ====================================================================================================
 
+const linked_wheels_group : Array[String] = ["linked_wheels"];
+@export var linked_wheel : bool = false:
+	set(value):
+		linked_wheel = value;
+		notify_property_list_changed();
+		if is_node_ready():
+			queue_redraw();
+
+@export var linked_wheels : Array[SelectionWheel]:
+	set(value):
+		if options:
+			value.resize(options.size());
+		linked_wheels = value;
+
+# ====================================================================================================
+
 var outer_radius: float = 0.0;
 var inner_radius: float = 0.0;
 var sprite_size: Vector2 = Vector2.ZERO;
@@ -181,3 +200,11 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if has_node("Config"):
 		return $Config._get_configuration_warnings();
 	return PackedStringArray();
+
+func _validate_property(property: Dictionary) -> void:
+	if property.name in animation_group:
+		if not animation:
+			property.usage = PROPERTY_USAGE_NO_EDITOR;
+	if property.name in linked_wheels_group:
+		if not linked_wheel:
+			property.usage = PROPERTY_USAGE_NO_EDITOR;

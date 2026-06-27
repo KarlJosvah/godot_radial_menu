@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c8r2xy8a6jorf" path="res://assets/spells/Icons/Icons_Water Spell.png" id="8_86au2"]
 [ext_resource type="Script" uid="uid://7rxcupumgyhi" path="res://core/input.gd" id="9_3d15o"]
 [ext_resource type="Script" uid="uid://igxxw8ofitog" path="res://core/render.gd" id="10_86wa6"]
+[ext_resource type="Script" uid="uid://bx0sgi8soq3ec" path="res://core/linked.gd" id="13_udcc4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sqund"]
 script = ExtResource("2_4lxda")
@@ -54,7 +55,7 @@ script = ExtResource("2_4lxda")
 option_name = "Water Spell"
 metadata/_custom_type_script = "uid://dj0m11c6pqxne"
 
-[node name="SelectionWheel" type="Control" unique_id=885623723]
+[node name="SelectionWheel" type="Control" unique_id=885623723 node_paths=PackedStringArray("linked_wheels")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -65,7 +66,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ofd7g")
 options = Array[ExtResource("2_4lxda")]([SubResource("AtlasTexture_sqund"), SubResource("AtlasTexture_6fqwr"), SubResource("AtlasTexture_3d15o"), SubResource("AtlasTexture_86wa6"), SubResource("AtlasTexture_gh7x8"), SubResource("AtlasTexture_86au2"), SubResource("AtlasTexture_udcc4")])
-animation = true
+linked_wheels = [null, null, null, null, null, null, null]
 
 [node name="Input" type="Node" parent="." unique_id=45787566]
 script = ExtResource("9_3d15o")
@@ -78,3 +79,6 @@ script = ExtResource("4_7ynom")
 
 [node name="Config" type="Node" parent="." unique_id=507006293]
 script = ExtResource("5_t3sya")
+
+[node name="Linked" type="Node" parent="." unique_id=267705771]
+script = ExtResource("13_udcc4")

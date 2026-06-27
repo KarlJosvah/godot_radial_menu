@@ -15,15 +15,18 @@ offset_right = 132.0
 offset_bottom = 42.0
 text = "Text goes here"
 
-[node name="wheel_left" parent="UI" unique_id=885623723 instance=ExtResource("1_5lnwv")]
+[node name="wheel_left" parent="UI" unique_id=885623723 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
+linked_wheels = [null, null, null, null, null, null, null]
 
 [node name="wheel_right" parent="UI" unique_id=954082516 instance=ExtResource("1_5lnwv")]
 bg_color = Color(0.6667971, 0.30439863, 0.32570416, 0.6901961)
+linked_wheel = true
 
-[node name="wheel_both_left" parent="UI" unique_id=1994358744 instance=ExtResource("1_5lnwv")]
+[node name="wheel_both_left" parent="UI" unique_id=1994358744 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
 offset_left = -470.0
 offset_right = -470.0
 bg_color = Color(0.63671225, 0.5436272, 0.29716727, 0.6901961)
+linked_wheels = [null, null, null, null, null, null, null]
 
 [node name="wheel_both_rights" type="Control" parent="UI" unique_id=923421739]
 layout_mode = 3
@@ -33,28 +36,31 @@ offset_top = 540.0
 offset_right = 1450.0
 offset_bottom = 580.0
 
-[node name="wheel_both_right_1" parent="UI/wheel_both_rights" unique_id=1671960258 instance=ExtResource("1_5lnwv")]
+[node name="wheel_both_right_1" parent="UI/wheel_both_rights" unique_id=1671960258 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
 layout_mode = 1
 offset_left = -20.0
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = -20.0
 bg_color = Color(0.38304883, 0.4714442, 0.24391907, 0.6901961)
+linked_wheels = [null, null, null, null, null, null, null]
 
-[node name="wheel_both_right_2" parent="UI/wheel_both_rights" unique_id=1284643210 instance=ExtResource("1_5lnwv")]
+[node name="wheel_both_right_2" parent="UI/wheel_both_rights" unique_id=1284643210 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
 layout_mode = 1
 offset_left = -20.0
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = -20.0
 bg_color = Color(0.6122784, 0.31636864, 0.5107196, 0.6901961)
+linked_wheels = [null, null, null, null, null, null, null]
 
-[node name="wheel_both_right_3" parent="UI/wheel_both_rights" unique_id=1212632317 instance=ExtResource("1_5lnwv")]
+[node name="wheel_both_right_3" parent="UI/wheel_both_rights" unique_id=1212632317 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
 layout_mode = 1
 offset_left = -20.0
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = -20.0
 bg_color = Color(0.91053516, 0.9014402, 0.89963275, 0.6901961)
+linked_wheels = [null, null, null, null, null, null, null]
 
 [connection signal="on_selection_change" from="UI/wheel_both_left" to="UI" method="_on_wheel_both_left_on_selection_change"]
