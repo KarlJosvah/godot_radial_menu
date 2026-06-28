@@ -1,7 +1,7 @@
 @tool
 extends Node;
 
-var wheel: SelectionWheel
+var wheel
 var current_linked_index: int = -1
 
 func _ready() -> void:
