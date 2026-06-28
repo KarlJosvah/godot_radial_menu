@@ -12,7 +12,7 @@ signal on_selection_change(selected_index: int);
 # ====================================================================================================
 
 @export_group("Items")
-@export var options: Array[WheelOption]:
+@export var options: Array[RadialMenuOption]:
 	set(value):
 		options = value;
 		linked_wheels.resize(options.size());
