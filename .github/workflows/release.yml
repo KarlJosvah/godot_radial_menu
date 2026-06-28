@@ -1,0 +1,81 @@
+name: Package and Release Addon
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'addons/**'
+  workflow_dispatch: # Allows manual execution from the GitHub Actions UI
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract Version from plugin.cfg
+        id: get_version
+        run: |
+          VERSION=$(grep -oP 'version="\K[^"]+' addons/radial_menu/plugin.cfg)
+          echo "ADDON_VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "Version found: $VERSION"
+
+      - name: Check if Tag Exists
+        id: check_tag
+        run: |
+          TAG_NAME="v${{ steps.get_version.outputs.ADDON_VERSION }}"
+          if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+            echo "TAG_EXISTS=true" >> $GITHUB_OUTPUT
+            echo "Tag $TAG_NAME already exists, skipping release."
+          else
+            echo "TAG_EXISTS=false" >> $GITHUB_OUTPUT
+            echo "Tag $TAG_NAME does not exist, proceeding."
+          fi
+
+      - name: Create and Push Git Tag
+        if: steps.check_tag.outputs.TAG_EXISTS == 'false'
+        run: |
+          TAG_NAME="v${{ steps.get_version.outputs.ADDON_VERSION }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag "$TAG_NAME"
+          git push origin "$TAG_NAME"
+
+      - name: Create Isolated Addon Directory
+        if: steps.check_tag.outputs.TAG_EXISTS == 'false'
+        run: |
+          mkdir dist
+          cp -r addons dist/
+
+      - name: Archive Addon Folder into Zip
+        if: steps.check_tag.outputs.TAG_EXISTS == 'false'
+        run: |
+          cd dist
+          zip -r ../radial_menu.zip addons/
+          cd ..
+
+      - name: Create GitHub Release and Upload Asset
+        if: steps.check_tag.outputs.TAG_EXISTS == 'false'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.get_version.outputs.ADDON_VERSION }}
+          files: radial_menu.zip
+          name: Release v${{ steps.get_version.outputs.ADDON_VERSION }}
+          body: |
+            ## Radial Menu Addon - v${{ steps.get_version.outputs.ADDON_VERSION }}
+            
+            ### Installation
+            1. Download the attached `radial_menu.zip`.
+            2. Extract the `addons/` folder into your Godot project's root directory (`res://`).
+            3. Enable the plugin via **Project ➔ Project Settings ➔ Plugins**.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
