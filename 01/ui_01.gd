@@ -1,15 +1,23 @@
 extends CanvasLayer;
 
-@onready var selection_wheel: Control = $SelectionWheel;
+@onready var radial_menu: Control = $RadialMenu;
 @onready var label: Label = $Label;
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("wheel_L"):
-		selection_wheel.open();
+		radial_menu.open();
 	elif Input.is_action_just_released("wheel_L"):
-		var selected_name = selection_wheel.close();
-		label.text = selected_name;
+		var selected_idx = radial_menu.close();
+		label.text = "Selected: " + _get_wheel_value(radial_menu, selected_idx);
 
+func _on_radial_menu_on_selection_change(selected_index: int) -> void:
+	label.text = "Hovering: " + _get_wheel_value(radial_menu, selected_index);
 
-func _on_selection_wheel_on_selection_change(selected_name: String) -> void:
-	label.text = selected_name;
+func _get_wheel_value(wheel_node: Control, index: int) -> String:
+	if not wheel_node or not wheel_node.options:
+		return "<none>";
+	if index < 0 or index >= len(wheel_node.options):
+		return "<none>";
+	if not wheel_node.options[index]:
+		return "<none>";
+	return wheel_node.options[index].option_name;

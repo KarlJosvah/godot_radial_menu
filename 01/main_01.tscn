@@ -1,7 +1,55 @@
 [gd_scene format=3 uid="uid://dgph7noc8tff"]
 
 [ext_resource type="Script" uid="uid://bflblvx6m7qey" path="res://01/ui_01.gd" id="1_h7tqt"]
-[ext_resource type="PackedScene" uid="uid://irjcgita3fgr" path="res://core/selection_wheel.tscn" id="2_k2xl5"]
+[ext_resource type="PackedScene" uid="uid://f55vqnf0yo0o" path="res://addons/radial_menu/radial_menu.tscn" id="2_k2xl5"]
+[ext_resource type="Script" uid="uid://br4prdep4lqgk" path="res://addons/radial_menu/radial_menu_option.gd" id="3_option"]
+[ext_resource type="Texture2D" uid="uid://ly3jpgxc87xy" path="res://assets/spells/Icons/Icons_Fire Arrow.png" id="4_fire_arrow"]
+[ext_resource type="Texture2D" uid="uid://j4fccc1s5juu" path="res://assets/spells/Icons/Icons_Fire Ball.png" id="5_fire_ball"]
+[ext_resource type="Texture2D" uid="uid://cfu7cpnh1ctvf" path="res://assets/spells/Icons/Icons_Fire Spell.png" id="6_fire_spell"]
+[ext_resource type="Texture2D" uid="uid://b4j3m77jejsba" path="res://assets/spells/Icons/Icons_Water Arrow.png" id="7_water_arrow"]
+[ext_resource type="Texture2D" uid="uid://d1f4mmpjg27f6" path="res://assets/spells/Icons/Icons_Water Ball.png" id="8_water_ball"]
+[ext_resource type="Texture2D" uid="uid://c8r2xy8a6jorf" path="res://assets/spells/Icons/Icons_Water Spell.png" id="9_water_spell"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cancel"]
+script = ExtResource("3_option")
+option_name = "Cancel"
+metadata/_custom_type_script = "uid://br4prdep4lqgk"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fire_arrow"]
+atlas = ExtResource("4_fire_arrow")
+script = ExtResource("3_option")
+option_name = "Fire Arrow"
+metadata/_custom_type_script = "uid://br4prdep4lqgk"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fire_ball"]
+atlas = ExtResource("5_fire_ball")
+script = ExtResource("3_option")
+option_name = "Fire Ball"
+metadata/_custom_type_script = "uid://br4prdep4lqgk"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fire_spell"]
+atlas = ExtResource("6_fire_spell")
+script = ExtResource("3_option")
+option_name = "Fire Spell"
+metadata/_custom_type_script = "uid://br4prdep4lqgk"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_water_arrow"]
+atlas = ExtResource("7_water_arrow")
+script = ExtResource("3_option")
+option_name = "Water Arrow"
+metadata/_custom_type_script = "uid://br4prdep4lqgk"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_water_ball"]
+atlas = ExtResource("8_water_ball")
+script = ExtResource("3_option")
+option_name = "Water Ball"
+metadata/_custom_type_script = "uid://br4prdep4lqgk"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_water_spell"]
+atlas = ExtResource("9_water_spell")
+script = ExtResource("3_option")
+option_name = "Water Spell"
+metadata/_custom_type_script = "uid://br4prdep4lqgk"
 
 [node name="Main 01" type="Node" unique_id=745558656]
 
@@ -9,11 +57,14 @@
 script = ExtResource("1_h7tqt")
 
 [node name="Label" type="Label" parent="UI" unique_id=1488761062]
-offset_left = 2.0
-offset_right = 181.0
-offset_bottom = 23.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 43.0
+text = "Selected: None"
 
-[node name="SelectionWheel" parent="UI" unique_id=885623723 instance=ExtResource("2_k2xl5")]
+[node name="RadialMenu" parent="UI" unique_id=885623723 instance=ExtResource("2_k2xl5")]
 size_flags_horizontal = 4
+options = Array[ExtResource("3_option")]([SubResource("AtlasTexture_cancel"), SubResource("AtlasTexture_fire_arrow"), SubResource("AtlasTexture_fire_ball"), SubResource("AtlasTexture_fire_spell"), SubResource("AtlasTexture_water_arrow"), SubResource("AtlasTexture_water_ball"), SubResource("AtlasTexture_water_spell")])
 
-[connection signal="on_selection_change" from="UI/SelectionWheel" to="UI" method="_on_selection_wheel_on_selection_change"]
+[connection signal="on_selection_change" from="UI/RadialMenu" to="UI" method="_on_radial_menu_on_selection_change"]
