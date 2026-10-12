@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'addons/**'
+      - 'release-notes/**'
   workflow_dispatch: # Allows manual execution from the GitHub Actions UI
 
 jobs:
@@ -61,6 +62,29 @@ jobs:
           zip -r ../radial_menu.zip addons/
           cd ..
 
+      - name: Prepare Release Notes
+        if: steps.check_tag.outputs.TAG_EXISTS == 'false'
+        run: |
+          VERSION="${{ steps.get_version.outputs.ADDON_VERSION }}"
+          NOTE_FILE="release-notes/v${VERSION}.md"
+          BODY_FILE="RELEASE_BODY.md"
+          
+          if [ -f "$NOTE_FILE" ] && [ -s "$NOTE_FILE" ]; then
+            echo "Attaching release notes from $NOTE_FILE"
+            cat "$NOTE_FILE" > "$BODY_FILE"
+            printf "\n\n---\n### Installation\n1. Download the attached \`radial_menu.zip\`.\n2. Extract the \`addons/\` folder into your Godot project's root directory (\`res://\`).\n3. Enable the plugin via **Project ➔ Project Settings ➔ Plugins**.\n" >> "$BODY_FILE"
+          else
+            echo "No custom release notes found at $NOTE_FILE. Using default body."
+            cat << EOF > "$BODY_FILE"
+          ## Radial Menu Addon - v${VERSION}
+          
+          ### Installation
+          1. Download the attached \`radial_menu.zip\`.
+          2. Extract the \`addons/\` folder into your Godot project's root directory (\`res://\`).
+          3. Enable the plugin via **Project ➔ Project Settings ➔ Plugins**.
+          EOF
+          fi
+
       - name: Create GitHub Release and Upload Asset
         if: steps.check_tag.outputs.TAG_EXISTS == 'false'
         uses: softprops/action-gh-release@v2
@@ -68,13 +92,7 @@ jobs:
           tag_name: v${{ steps.get_version.outputs.ADDON_VERSION }}
           files: radial_menu.zip
           name: Release v${{ steps.get_version.outputs.ADDON_VERSION }}
-          body: |
-            ## Radial Menu Addon - v${{ steps.get_version.outputs.ADDON_VERSION }}
-            
-            ### Installation
-            1. Download the attached `radial_menu.zip`.
-            2. Extract the `addons/` folder into your Godot project's root directory (`res://`).
-            3. Enable the plugin via **Project ➔ Project Settings ➔ Plugins**.
+          body_path: RELEASE_BODY.md
           draft: false
           prerelease: false
         env:
