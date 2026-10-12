@@ -30,7 +30,7 @@ A versatile, highly customizable, and component-based radial selection menu (whe
 ## Installation
 
 ### Manual Installation
-1. Download the latest `radial_menu.zip` from the [Releases](https://github.com) tab.
+1. Download the latest `radial_menu.zip` from the [Releases](https://github.com/KarlJosvah/godot_radial_menu/releases) tab.
 2. Extract the `addons/radial_menu` folder into your Godot project's `res://addons/` directory.
 3. In the Godot editor, go to **Project ➔ Project Settings ➔ Plugins** and enable **Radial Menu**.
 
