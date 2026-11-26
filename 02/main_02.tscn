@@ -63,11 +63,13 @@ offset_right = 132.0
 offset_bottom = 42.0
 text = "Text goes here"
 
-[node name="wheel_left" parent="UI" unique_id=885623723 instance=ExtResource("1_5lnwv")]
+[node name="wheel_left" parent="UI" unique_id=885623723 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
 options = Array[ExtResource("3_8ldu0")]([SubResource("AtlasTexture_sqund"), SubResource("AtlasTexture_6fqwr"), SubResource("AtlasTexture_3d15o"), SubResource("AtlasTexture_86wa6")])
+linked_wheels = [null, null, null, null]
 
-[node name="wheel_right" parent="UI" unique_id=954082516 instance=ExtResource("1_5lnwv")]
+[node name="wheel_right" parent="UI" unique_id=954082516 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
 options = Array[ExtResource("3_8ldu0")]([SubResource("AtlasTexture_sqund"), SubResource("AtlasTexture_gh7x8"), SubResource("AtlasTexture_water_ball"), SubResource("AtlasTexture_water_spell")])
+linked_wheels = [null, null, null, null]
 bg_color = Color(0.6667971, 0.30439863, 0.32570416, 0.6901961)
 
 [node name="wheel_both_left" parent="UI" unique_id=1994358744 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
@@ -87,32 +89,35 @@ offset_top = 540.0
 offset_right = 1450.0
 offset_bottom = 580.0
 
-[node name="wheel_both_right_1" parent="UI/wheel_both_rights" unique_id=1671960258 instance=ExtResource("1_5lnwv")]
+[node name="wheel_both_right_1" parent="UI/wheel_both_rights" unique_id=1671960258 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
 layout_mode = 1
 offset_left = -20.0
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = -20.0
 options = Array[ExtResource("3_8ldu0")]([SubResource("AtlasTexture_sqund"), SubResource("AtlasTexture_6fqwr"), SubResource("AtlasTexture_3d15o")])
+linked_wheels = [null, null, null]
 bg_color = Color(0.38304883, 0.4714442, 0.24391907, 0.6901961)
 joy_axe = 2
 
-[node name="wheel_both_right_2" parent="UI/wheel_both_rights" unique_id=1284643210 instance=ExtResource("1_5lnwv")]
+[node name="wheel_both_right_2" parent="UI/wheel_both_rights" unique_id=1284643210 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
 layout_mode = 1
 offset_left = -20.0
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = -20.0
 options = Array[ExtResource("3_8ldu0")]([SubResource("AtlasTexture_sqund"), SubResource("AtlasTexture_3d15o"), SubResource("AtlasTexture_86wa6")])
+linked_wheels = [null, null, null]
 bg_color = Color(0.6122784, 0.31636864, 0.5107196, 0.6901961)
 joy_axe = 2
 
-[node name="wheel_both_right_3" parent="UI/wheel_both_rights" unique_id=1212632317 instance=ExtResource("1_5lnwv")]
+[node name="wheel_both_right_3" parent="UI/wheel_both_rights" unique_id=1212632317 node_paths=PackedStringArray("linked_wheels") instance=ExtResource("1_5lnwv")]
 layout_mode = 1
 offset_left = -20.0
 offset_top = -20.0
 offset_right = -20.0
 offset_bottom = -20.0
 options = Array[ExtResource("3_8ldu0")]([SubResource("AtlasTexture_sqund"), SubResource("AtlasTexture_86wa6"), SubResource("AtlasTexture_gh7x8")])
+linked_wheels = [null, null, null]
 bg_color = Color(0.91053516, 0.9014402, 0.89963275, 0.6901961)
 joy_axe = 2

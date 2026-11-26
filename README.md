@@ -5,6 +5,7 @@ A versatile, highly customizable, and component-based radial selection menu (whe
 ![Godot 4](https://img.shields.io/badge/Godot-4.x-478cbf?logo=godotengine&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+![Alt text describing the GIF](assets/radial-menu.gif)
 ---
 
 ## Features
